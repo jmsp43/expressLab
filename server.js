@@ -1,5 +1,6 @@
 //first require express
 const express = require('express')
+const responses = require('./models/8ball.js')
 
 //initialize app
 const app = express()
@@ -15,6 +16,10 @@ app.get('/greeting/:name', (req, res) => {
 
 app.get('/tip/:total/:tipPercentage', (req, res) => {
     res.send(`Tip is $${(req.params.total * req.params.tipPercentage)/100}`)
+})
+
+app.get('/magic/:question', (req, res) => {
+    res.send(`<h1>The Magic 8ball says: ${responses[Math.floor((Math.random()*(responses.length)))]}</h1>`)
 })
 
 //express listen here
